@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "gauss.h"
 #include "mat_io.h"
+#include "backsubst.h"
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
