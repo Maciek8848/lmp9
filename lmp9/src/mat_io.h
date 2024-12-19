@@ -1,19 +1,17 @@
-#ifndef _MAT_IO_H
-#define _MAT_IO_H
+#ifndef MAT_IO_H
+#define MAT_IO_H
 
+// Definicja struktury Matrix
 typedef struct _Matrix {
-				int r,c;
-				double **data;
+    int rows;       // liczba wierszy
+    int cols;       // liczba kolumn
+    double **data;  // wskaźnik na dwuwymiarową tablicę danych
 } Matrix;
 
-/**
- * Zwraca 0 - udalo sie wczytac
- * Zwraca 1 - podczas wczytywania wystapil blad
- */
-Matrix * readFromFile(char * fname);
-void printToScreen(Matrix *mat);
+// Deklaracje funkcji
+Matrix* loadMatrix(const char *filename); // Wczytanie macierzy z pliku
+void printMatrix(const Matrix *mat);      // Wypisanie macierzy na ekran
+void freeMatrix(Matrix *mat);             // Zwalnianie pamięci
 
-Matrix * createMatrix(int r, int c);
-void freeMatrix(Matrix *mat);
+#endif // MAT_IO_H
 
-#endif

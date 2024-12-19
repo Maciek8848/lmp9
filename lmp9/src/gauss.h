@@ -1,12 +1,9 @@
-#ifndef _GAUSS_H
-#define _GAUSS_H
+#ifndef GAUSS_H
+#define GAUSS_H
 
-#include "mat_io.h"
+#include "mat_io.h"  // Zawiera definicję Matrix
 
-/**
- * Zwraca 0 - elimnacja zakonczona sukcesem
- * Zwraca 1 - macierz osobliwa - dzielenie przez 0
- */
-int eliminate(Matrix *mat, Matrix *b);
+// Deklaracja funkcji związanych z eliminacją Gaussa
+int eliminate(Matrix *A, Matrix *b);
 
-#endif
+#endif // GAUSS_H
