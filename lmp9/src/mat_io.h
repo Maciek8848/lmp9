@@ -12,6 +12,6 @@ typedef struct _Matrix {
 Matrix* loadMatrix(const char *filename); // Wczytanie macierzy z pliku
 void printMatrix(const Matrix *mat);      // Wypisanie macierzy na ekran
 void freeMatrix(Matrix *mat);             // Zwalnianie pamięci
-
+Matrix *createMatrix(int rows, int cols);
 #endif // MAT_IO_H
 

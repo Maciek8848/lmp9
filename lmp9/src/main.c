@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Wczytaj macierz A i wektor b
+    // Wczytanie macierz A i wektor b
     Matrix *A = loadMatrix(argv[1]);
     Matrix *b = loadMatrix(argv[2]);
 
@@ -17,21 +17,51 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Wywołaj funkcję eliminacji Gaussa
-    int res = eliminate(A, b);
-    if (res == -1) {
-        printf("Error during Gaussian elimination\n");
+
+    if (A->rows != b->rows) {
+        printf("Matrix and vector dimensions do not match.\n");
         freeMatrix(A);
         freeMatrix(b);
         return 1;
     }
 
-    // Wypisz wynik
-    printMatrix(A);
 
-    // Zwalnij pamięć
+    Matrix *x = createMatrix(A->rows, 1);
+    if (x == NULL) {
+        printf("Error creating solution vector.\n");
+        freeMatrix(A);
+        freeMatrix(b);
+        return 1;
+    }
+
+
+    int res = eliminate(A, b);
+    if (res == -1) {
+        printf("Error during Gaussian elimination\n");
+        freeMatrix(A);
+        freeMatrix(b);
+        freeMatrix(x);
+        return 1;
+    }
+
+
+    res = backsubst(x, A, b);
+    if (res != 0) {
+        printf("Error during back substitution\n");
+        freeMatrix(A);
+        freeMatrix(b);
+        freeMatrix(x);
+        return 1;
+    }
+
+
+    printf("Solution vector (x):\n");
+    printMatrix(x);
+
+
     freeMatrix(A);
     freeMatrix(b);
+    freeMatrix(x);
 
     return 0;
 }

@@ -52,3 +52,24 @@ void freeMatrix(Matrix *mat) {
     free(mat->data);
     free(mat);
 }
+Matrix *createMatrix(int rows, int cols) {
+    Matrix *mat = (Matrix *)malloc(sizeof(Matrix));
+    if (!mat) return NULL;
+    mat->rows = rows;
+    mat->cols = cols;
+    mat->data = (double **)malloc(rows * sizeof(double *));
+    if (!mat->data) {
+        free(mat);
+        return NULL;
+    }
+    for (int i = 0; i < rows; i++) {
+        mat->data[i] = (double *)malloc(cols * sizeof(double));
+        if (!mat->data[i]) {
+            for (int j = 0; j < i; j++) free(mat->data[j]);
+            free(mat->data);
+            free(mat);
+            return NULL;
+        }
+    }
+    return mat;
+}

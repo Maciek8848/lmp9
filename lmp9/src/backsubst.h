@@ -4,10 +4,15 @@
 #include "mat_io.h"
 
 /**
- * Zwraca 0 - wsteczne podstawienie zakonczone sukcesem
- * Zwraca 1 - błąd dzielenia przez 0 (element na diagonali = 0)
- * Zwraca 2 - błąd nieprawidłowych rozmiarów macierzy
+ * Funkcja realizująca metodę podstawienia wstecznego dla układu równań Ax = b.
+ * 
+ * @param x        - wskaźnik na wektor rozwiązania (będzie zawierał wynik po wykonaniu operacji)
+ * @param mat      - wskaźnik na macierz współczynników A
+ * @param b        - wskaźnik na wektor prawych stron b
+ * @return         - 0 - wsteczne podstawienie zakończone sukcesem,
+ *                  - 1 - błąd dzielenia przez 0 (element na diagonali = 0),
+ *                  - 2 - błąd nieprawidłowych rozmiarów macierzy (np. macierz A i wektor b mają niezgodne wymiary)
  */
-int  backsubst(Matrix *x, Matrix *mat, Matrix *b);
+int backsubst(Matrix *x, Matrix *mat, Matrix *b);
 
-#endif
+#endif // _BACKSUBST_H
